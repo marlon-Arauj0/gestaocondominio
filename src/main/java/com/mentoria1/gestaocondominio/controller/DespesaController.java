@@ -5,10 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/test")
-public class TestController {
-    @GetMapping("my-first-api")
-    public String testController(){
-        return "Hello world - my first GET";
-    }
+@RequestMapping("api/Despesa")
+
+public class DespesaController {
 }
