@@ -1,23 +1,21 @@
-package com.mentoria1.gestaocondominio.domain;
+package com.mentoria1.gestaocondominio.dataTransferObjectDTO;
 
-import com.mentoria1.gestaocondominio.domain.enums.StatusDespesa;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
-
 @Getter
 @Setter
-public class Despesa {
+@ToString
+public class DespesaRequest {
 
-    private Integer id;
     private String categoria;
     private String descricao;
     private Double valorOriginal;
     private Double valorPago;
-    private LocalDate dataCriacao;
     private LocalDate dataPagamento;
     private LocalDate dataVencimento;
-    private StatusDespesa status;
+
 }
