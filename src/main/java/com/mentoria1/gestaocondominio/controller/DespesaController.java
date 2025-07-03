@@ -1,13 +1,16 @@
 package com.mentoria1.gestaocondominio.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mentoria1.gestaocondominio.dataTransferObjectDTO.DespesaRequest;
+import com.mentoria1.gestaocondominio.domain.Despesa;
 import com.mentoria1.gestaocondominio.service.DespesaService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,4 +25,15 @@ public class DespesaController {
         service.cadastrar(request);
     }
 
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<Despesa> ListarDespesas(){
+        return service.listar();
+    }
+
+    @GetMapping(value = "{id}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public Despesa getDespesaById(@PathVariable Long id){
+        return service.buscarById(id);
+    }
 }

@@ -4,6 +4,7 @@ import com.mentoria1.gestaocondominio.dataTransferObjectDTO.DespesaRequest;
 import com.mentoria1.gestaocondominio.domain.Despesa;
 import com.mentoria1.gestaocondominio.domain.enums.StatusDespesa;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -14,14 +15,12 @@ import java.util.Objects;
 @Component
 public class DespesaConverter {
 
-    private static String FORMATO_DATA_PADRAO = "dd/MM/yyyy";
+    private static final String FORMATO_DATA_PADRAO = "dd/MM/yyyy";
 
     public Despesa convert(DespesaRequest request){
         Despesa despesa = new Despesa();
-        despesa.setCategoria(request.categoria());
-        despesa.setDescricao(request.descricao());
-        despesa.setValorOriginal(request.valorOriginal());
-        despesa.setValorPago(request.valorPago());
+        BeanUtils.copyProperties(request, despesa);
+
         despesa.setDataVencimento(stringToLocalDate(request.dataVencimento()));
         despesa.setDataPagamento(stringToLocalDate(request.dataPagamento()));
         despesa.setDataCriacao(LocalDateTime.now());
