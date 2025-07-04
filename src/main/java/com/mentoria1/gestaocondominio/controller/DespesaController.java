@@ -5,7 +5,6 @@ import com.mentoria1.gestaocondominio.domain.Despesa;
 import com.mentoria1.gestaocondominio.service.DespesaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +28,12 @@ public class DespesaController {
     @ResponseStatus(HttpStatus.OK)
     public List<Despesa> ListarDespesas(){
         return service.listar();
+    }
+
+    @GetMapping("filtro")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Despesa> ListarDespesasFiltro(@RequestParam(value = "status", required = false) String status){
+        return service.listar(status);
     }
 
     @GetMapping(value = "{id}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
