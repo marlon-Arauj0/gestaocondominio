@@ -1,9 +1,9 @@
 package com.mentoria1.gestaocondominio.dataTransferObjectDTO;
 
-import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotBlank;
 
-public record UsuarioRequest(String nome,
-                             String email,
-                             String senha,
+public record UsuarioRequest(@NotBlank String nome,
+                             @NotBlank String email,
+                             @NotBlank String senha,
                              Boolean permitirEntrada) {
 }

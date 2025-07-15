@@ -3,6 +3,7 @@ package com.mentoria1.gestaocondominio.controller;
 import com.mentoria1.gestaocondominio.dataTransferObjectDTO.UsuarioRequest;
 import com.mentoria1.gestaocondominio.domain.Usuario;
 import com.mentoria1.gestaocondominio.service.UsuarioService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ public class UsuarioController  {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void criar(@RequestBody UsuarioRequest request){
+    public void criar(@RequestBody @Valid UsuarioRequest request){
         service.criar(request);
     }
 

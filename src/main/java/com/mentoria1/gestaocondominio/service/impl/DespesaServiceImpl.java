@@ -1,10 +1,11 @@
-package com.mentoria1.gestaocondominio.service;
+package com.mentoria1.gestaocondominio.service.impl;
 
 import com.mentoria1.gestaocondominio.converter.DespesaConverter;
 import com.mentoria1.gestaocondominio.dataTransferObjectDTO.DespesaRequest;
 import com.mentoria1.gestaocondominio.domain.Despesa;
 import com.mentoria1.gestaocondominio.domain.enums.StatusDespesa;
 import com.mentoria1.gestaocondominio.repository.DespesaRepository;
+import com.mentoria1.gestaocondominio.service.DespesaService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
