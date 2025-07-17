@@ -19,7 +19,6 @@ public class UsuarioConverter implements Function<UsuarioRequest, Usuario> {
         usuario.setNome(request.nome());
         usuario.setEmail(request.email());
         usuario.setSenha(senha);
-        usuario.setPermitirEntrada(request.permitirEntrada());
 
         return usuario;
     }

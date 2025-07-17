@@ -9,14 +9,18 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @EqualsAndHashCode(of = "id")
+@Entity
 @Table(name = "usuarios")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "id_unidade")
+    private Unidade unidade;
 
     @Column(nullable = false)
     private String nome;
@@ -28,6 +32,6 @@ public class Usuario {
     @Column(nullable = false)
     private String senha;
 
-    private Boolean permitirEntrada;
-
+    @Column(nullable = false)
+    private Boolean admin;
 }

@@ -1,3 +1,6 @@
+DROP TABLE IF EXISTS despesas;
+--Observação : Tenha cuidado antes de excluir uma tabela. Excluir uma tabela resultará na perda de todas as informações armazenadas nela!
+
 CREATE TABLE despesas (
     id              BIGINT          NOT NULL AUTO_INCREMENT PRIMARY KEY         ,
     id_usuario      BIGINT          NOT NULL                                    ,
