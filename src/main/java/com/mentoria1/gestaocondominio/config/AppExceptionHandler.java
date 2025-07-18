@@ -1,6 +1,7 @@
 package com.mentoria1.gestaocondominio.config;
 
 import com.mentoria1.gestaocondominio.dataTransferObjectDTO.ErrorResponse;
+import com.mentoria1.gestaocondominio.exception.AssociacaoUsuarioUnidadeException;
 import com.mentoria1.gestaocondominio.exception.CriacaoException;
 import com.mentoria1.gestaocondominio.exception.UsuarioNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -24,5 +25,13 @@ public class AppExceptionHandler {
                 .status(HttpStatus.NOT_FOUND)
                 .body(new ErrorResponse(e.getMessage()));
     }
+
+    @ExceptionHandler(AssociacaoUsuarioUnidadeException.class)
+    public ResponseEntity<ErrorResponse> handler(AssociacaoUsuarioUnidadeException e) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponse(e.getMessage()));
+    }
+
 
 }

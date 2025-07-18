@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
+import static jakarta.persistence.CascadeType.ALL;
+
 @Getter
 @Setter
 @ToString
@@ -18,10 +22,6 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_unidade")
-    private Unidade unidade;
-
     @Column(nullable = false)
     private String nome;
 
@@ -34,4 +34,7 @@ public class Usuario {
 
     @Column(nullable = false)
     private Boolean admin;
+
+    @OneToMany(mappedBy = "usuario", cascade = ALL)
+    private List<Unidade> unidades;
 }

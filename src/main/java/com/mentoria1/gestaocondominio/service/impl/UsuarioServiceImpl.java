@@ -3,8 +3,10 @@ package com.mentoria1.gestaocondominio.service.impl;
 import com.mentoria1.gestaocondominio.converter.UsuarioConverter;
 import com.mentoria1.gestaocondominio.dataTransferObjectDTO.UsuarioRequest;
 import com.mentoria1.gestaocondominio.domain.Usuario;
+import com.mentoria1.gestaocondominio.exception.AssociacaoUsuarioUnidadeException;
 import com.mentoria1.gestaocondominio.exception.CriacaoException;
 import com.mentoria1.gestaocondominio.exception.UsuarioNotFoundException;
+import com.mentoria1.gestaocondominio.repository.UnidadeRepository;
 import com.mentoria1.gestaocondominio.repository.UsuarioRepository;
 import com.mentoria1.gestaocondominio.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ import static com.mentoria1.gestaocondominio.utils.AppUtil.isEmailInvalid;
 public class UsuarioServiceImpl implements UsuarioService{
 
     private final UsuarioRepository repository;
+    private final UnidadeRepository unidadeRepository;
     private final UsuarioConverter converter;
 
     @Override
@@ -40,6 +43,20 @@ public class UsuarioServiceImpl implements UsuarioService{
         var senha = BCrypt.hashpw(novaSenha, BCrypt.gensalt());
         usuario.setSenha(senha);
         salvarUsuario(usuario);
+    }
+
+    @Override
+    public void associarUnidade(String emailUsuario, String registroUnidade) {
+        var usuario = repository
+                .findByEmail(emailUsuario)
+                .orElseThrow(()-> new AssociacaoUsuarioUnidadeException("Usuario não encontrado"));
+
+        var unidade = unidadeRepository
+                .findFirstByregistro(registroUnidade)
+                .orElseThrow(()-> new AssociacaoUsuarioUnidadeException("Unidade não encontrada"));
+
+        unidade.setUsuario(usuario);
+        unidadeRepository.save(unidade);
     }
 
     private void validarEmail (UsuarioRequest request){

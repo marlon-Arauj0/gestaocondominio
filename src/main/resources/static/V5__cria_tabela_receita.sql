@@ -10,6 +10,6 @@ CREATE TABLE receitas (
     valor           DECIMAL(10, 2)  NOT NULL                            ,
     data_pagamento  DATE            NULL                                ,
     data_vencimento DATE            NOT NULL                            ,
-    data_cricao     TIMESTAMP       NOT NULL DEFAULT NOW()              ,
+    data_criacao     TIMESTAMP       NOT NULL DEFAULT NOW()              ,
     CONSTRAINT fk_receitas_usuarios FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );

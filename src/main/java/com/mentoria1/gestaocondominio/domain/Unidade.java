@@ -3,8 +3,6 @@ package com.mentoria1.gestaocondominio.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @Getter
 @Setter
 @ToString
@@ -19,12 +17,13 @@ public class Unidade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "id_usuarios")
+    private Usuario usuario;
+
     @Column(nullable = false)
     private String tipo;
 
     @Column(nullable = false)
     private String registro;
-
-    @OneToMany(mappedBy = "unidade")
-    private List<Usuario> usuarios;
 }

@@ -13,4 +13,5 @@ public interface UsuarioService {
 
     void atualizarSenha(String email, String novaSenha);
 
+    void associarUnidade(String emailUsuario, String registroUnidade);
 }
