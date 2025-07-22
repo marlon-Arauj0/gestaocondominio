@@ -2,6 +2,7 @@ package com.mentoria1.gestaocondominio.service.impl;
 
 import com.mentoria1.gestaocondominio.dataTransferObjectDTO.UnidadeRequest;
 import com.mentoria1.gestaocondominio.domain.Unidade;
+import com.mentoria1.gestaocondominio.exception.UsuarioNotFoundException;
 import com.mentoria1.gestaocondominio.repository.UnidadeRepository;
 import com.mentoria1.gestaocondominio.service.UnidadeService;
 import lombok.RequiredArgsConstructor;
@@ -13,11 +14,18 @@ import org.springframework.stereotype.Service;
 public class UnidadeServiceImpl implements UnidadeService {
 
     private final UnidadeRepository repository;
-
     @Override
     public void criar(UnidadeRequest request) {
         var unidade = new Unidade();
         BeanUtils.copyProperties(request, unidade);
         repository.save(unidade);
+    }
+
+        @Override
+        public Unidade buscarPorId(Long id) {
+            return repository
+                    .findById(id)
+                    .orElseThrow(UsuarioNotFoundException::new);
+
     }
 }

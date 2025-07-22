@@ -17,7 +17,6 @@ import java.util.List;
 public class DespesaServiceImpl implements DespesaService {
 
     private final DespesaConverter converter;
-
     private final DespesaRepository repository;
 
     @Override

@@ -24,7 +24,7 @@ public class UsuarioController  {
     @GetMapping("{email}")
     @ResponseStatus(HttpStatus.OK)
     public Usuario getUsuarioByEmail(@PathVariable String email){
-        return service.obterEmail(email);
+        return service.obterUsuario(email);
     }
 
     @PatchMapping

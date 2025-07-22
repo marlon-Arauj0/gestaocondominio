@@ -1,12 +1,10 @@
 package com.mentoria1.gestaocondominio.domain;
 
-import com.mentoria1.gestaocondominio.domain.enums.StatusDespesa;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
 
 @Getter
 @Setter
@@ -14,17 +12,14 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "despesas")
-public class Despesa extends Domain {
+@Table(name = "receitas")
+public class Receita extends Domain{
 
     @Column(nullable = false)
     private String categoria;
 
-    @Column(name = "valor_original", nullable = false)
-    private Double valorOriginal;
-
-    @Column(name = "valor_pago")
-    private Double valorPago;
+    @Column(name = "valor")
+    private Double valor;
 
     @Column(nullable = false)
     private String descricao;
@@ -35,11 +30,12 @@ public class Despesa extends Domain {
     @Column(name = "data_vencimento", nullable = false)
     private LocalDate dataVencimento;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private StatusDespesa status;
-
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "id_unidade")
+    private Usuario unidade;
+
 }

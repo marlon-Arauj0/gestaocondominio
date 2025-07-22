@@ -31,15 +31,22 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
     @Override
-    public Usuario obterEmail(String email) {
+    public Usuario obterUsuario(String email) {
         return repository
                 .findByEmail(email)
                 .orElseThrow(UsuarioNotFoundException::new);
     }
 
     @Override
+    public Usuario obterUsuario(Long idUsuario) {
+        return repository
+                .findById(idUsuario)
+                .orElseThrow(UsuarioNotFoundException::new);
+    }
+
+    @Override
     public void atualizarSenha(String email, String novaSenha) {
-        var usuario = obterEmail(email);
+        var usuario = obterUsuario(email);
         var senha = BCrypt.hashpw(novaSenha, BCrypt.gensalt());
         usuario.setSenha(senha);
         salvarUsuario(usuario);
