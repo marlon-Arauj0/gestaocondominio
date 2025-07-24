@@ -1,6 +1,3 @@
-DROP TABLE IF EXISTS despesas;
---Observação : Tenha cuidado antes de excluir uma tabela. Excluir uma tabela resultará na perda de todas as informações armazenadas nela!
-
 CREATE TABLE despesas (
     id              BIGINT          NOT NULL AUTO_INCREMENT PRIMARY KEY         ,
     id_usuario      BIGINT          NOT NULL                                    ,
@@ -10,7 +7,7 @@ CREATE TABLE despesas (
     descricao       VARCHAR(500)    NOT NULL                                    ,
     data_vencimento DATE            NOT NULL                                    ,
     data_pagamento  DATE            NULL                                        ,
-    data_criacao     TIMESTAMP       NOT NULL DEFAULT NOW()                     ,
+    data_criacao    TIMESTAMP       NOT NULL DEFAULT NOW()                      ,
     status          ENUM('PAGO', 'NAO_PAGO', 'ATRASADO', 'CANCELADO') NOT NULL  ,
-    CONSTRAINT fk_receitas_usuarios FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+    CONSTRAINT fk_despesas_usuarios FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );
