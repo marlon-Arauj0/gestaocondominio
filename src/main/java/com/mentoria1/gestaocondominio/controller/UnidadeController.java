@@ -1,9 +1,7 @@
 package com.mentoria1.gestaocondominio.controller;
 
 import com.mentoria1.gestaocondominio.dataTransferObjectDTO.UnidadeRequest;
-import com.mentoria1.gestaocondominio.dataTransferObjectDTO.UsuarioRequest;
 import com.mentoria1.gestaocondominio.service.UnidadeService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

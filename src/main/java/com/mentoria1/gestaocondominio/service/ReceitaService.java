@@ -2,7 +2,6 @@ package com.mentoria1.gestaocondominio.service;
 
 import com.mentoria1.gestaocondominio.dataTransferObjectDTO.ReceitaRequest;
 import com.mentoria1.gestaocondominio.domain.Receita;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.List;
 

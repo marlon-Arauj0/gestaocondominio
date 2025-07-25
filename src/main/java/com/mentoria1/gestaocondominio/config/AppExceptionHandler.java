@@ -1,10 +1,7 @@
 package com.mentoria1.gestaocondominio.config;
 
 import com.mentoria1.gestaocondominio.dataTransferObjectDTO.ErrorResponse;
-import com.mentoria1.gestaocondominio.exception.AssociacaoUsuarioUnidadeException;
-import com.mentoria1.gestaocondominio.exception.CriacaoException;
-import com.mentoria1.gestaocondominio.exception.ReceitaNotFoundException;
-import com.mentoria1.gestaocondominio.exception.UsuarioNotFoundException;
+import com.mentoria1.gestaocondominio.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -40,4 +37,13 @@ public class AppExceptionHandler {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorResponse(e.getMessage()));
     }
+
+    @ExceptionHandler(SemAutorizacaoException.class)
+    public ResponseEntity<ErrorResponse> handler(SemAutorizacaoException e) {
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .body(new ErrorResponse(e.getMessage()));
+    }
 }
+
+
