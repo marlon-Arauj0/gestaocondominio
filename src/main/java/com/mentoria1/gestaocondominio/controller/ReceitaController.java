@@ -2,6 +2,7 @@ package com.mentoria1.gestaocondominio.controller;
 
 import com.mentoria1.gestaocondominio.dataTransferObjectDTO.ReceitaRequest;
 import com.mentoria1.gestaocondominio.domain.Receita;
+import com.mentoria1.gestaocondominio.oauth.PreAutorizado;
 import com.mentoria1.gestaocondominio.service.ReceitaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ public class ReceitaController {
 
     public final ReceitaService service;
 
+    @PreAutorizado
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public void cadastrarReceita(@RequestBody ReceitaRequest request){

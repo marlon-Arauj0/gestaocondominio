@@ -3,6 +3,9 @@ package com.mentoria1.gestaocondominio.service.impl;
 import com.mentoria1.gestaocondominio.dataTransferObjectDTO.UsuarioPayload;
 import com.mentoria1.gestaocondominio.domain.Usuario;
 import com.mentoria1.gestaocondominio.service.JWTService;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
@@ -32,7 +35,21 @@ public class JWTServiceImpl implements JWTService {
 
     @Override
     public UsuarioPayload validarToken(String token) {
-        return null;
+        var payloadClaims = Jwts
+                .parser()
+                .verifyWith(obterSecretKey())
+                .build()
+                .parseSignedClaims(token);
+
+        verificarExpiracaoToken(payloadClaims);
+
+        return validarToken(token);
+    }
+
+    private void verificarExpiracaoToken(Jws<Claims> claimsJws){
+        Date dtExpiracaoToken = claimsJws.getPayload().getExpiration();
+        if (new Date().after(dtExpiracaoToken))
+            throw new JwtException("Token expirado");
     }
 
     private Map<String, Object> construirPayload(Usuario usuario){
@@ -44,7 +61,7 @@ public class JWTServiceImpl implements JWTService {
 
     private Date dataExpiracaoToken(){
         var instant = Instant.now();
-        var expiration = instant.plusSeconds(3600);
+        var expiration = instant.plusSeconds(60);
         return Date.from(expiration);
     }
 

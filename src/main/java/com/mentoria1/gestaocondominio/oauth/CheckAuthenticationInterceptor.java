@@ -1,26 +1,47 @@
 package com.mentoria1.gestaocondominio.oauth;
 
+import com.mentoria1.gestaocondominio.service.JWTService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.http.HttpStatus;
+import lombok.RequiredArgsConstructor;
 import org.springframework.lang.NonNull;
+import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import java.util.Objects;
+
+@Component
+@RequiredArgsConstructor
 public class CheckAuthenticationInterceptor implements HandlerInterceptor {
+
+    private final JWTService jwtService;
 
     @Override
     public boolean preHandle(@NonNull HttpServletRequest request,
                              @NonNull HttpServletResponse response,
                              @NonNull Object handler) throws Exception {
 
-        var token = request.getHeader("token-app");
-        var isTokenValid =  token != null && token.equals("abc123");
+        if(handler instanceof HandlerMethod method){
+            try {
+                PreAutorizado preAutorizadoAnnotation = method.getMethodAnnotation(PreAutorizado.class);
+                if (Objects.isNull(preAutorizadoAnnotation))
+                    return true;
+                var token = getTokenFromRequest(request);
+                jwtService.validarToken(token);
 
-        if (isTokenValid)
-            return true;
-
-        response.setStatus(HttpStatus.UNAUTHORIZED.value());
-        response.getWriter().write("Não tem autorização para esse serviço");
-        return false;
+            } catch (Exception e) {
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                response.getWriter().write("Não tem autorização para esse serviço");
+                return false;
+            }
+        }
+        return true;
     }
+
+    private String getTokenFromRequest(HttpServletRequest request){
+        var token = request.getHeader("Authorization");
+        return  token.split("Bearer")[1];
+    }
+
 }
