@@ -26,6 +26,5 @@ public class UnidadeServiceImpl implements UnidadeService {
             return repository
                     .findById(id)
                     .orElseThrow(UsuarioNotFoundException::new);
-
     }
 }

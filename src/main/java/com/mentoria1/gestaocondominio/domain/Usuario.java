@@ -32,6 +32,4 @@ public class Usuario extends Domain {
 
     @OneToMany(mappedBy = "usuario", cascade = ALL)
     private List<Unidade> unidades;
-
-
 }

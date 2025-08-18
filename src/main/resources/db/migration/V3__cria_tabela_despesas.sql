@@ -1,6 +1,6 @@
 CREATE TABLE despesas (
     id              BIGINT          NOT NULL AUTO_INCREMENT PRIMARY KEY         ,
-    id_usuario      BIGINT          NOT NULL                                    ,
+    id_usuario      BIGINT          NULL                                        ,
     categoria       VARCHAR(100)    NOT NULL                                    ,
     valor_original  DECIMAL(10, 2)  NOT NULL                                    ,
     valor_pago      DECIMAL(10, 2)  NULL                                        ,

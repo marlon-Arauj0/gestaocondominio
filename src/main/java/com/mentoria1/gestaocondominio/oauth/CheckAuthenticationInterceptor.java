@@ -1,6 +1,7 @@
 package com.mentoria1.gestaocondominio.oauth;
 
 import com.mentoria1.gestaocondominio.service.JWTService;
+import com.mentoria1.gestaocondominio.service.UsuarioService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,8 @@ import java.util.Objects;
 public class CheckAuthenticationInterceptor implements HandlerInterceptor {
 
     private final JWTService jwtService;
+    private final UsuarioService usuarioService;
+    private final UsuarioAppContext usuarioAppContext;
 
     @Override
     public boolean preHandle(@NonNull HttpServletRequest request,
@@ -27,8 +30,11 @@ public class CheckAuthenticationInterceptor implements HandlerInterceptor {
                 PreAutorizado preAutorizadoAnnotation = method.getMethodAnnotation(PreAutorizado.class);
                 if (Objects.isNull(preAutorizadoAnnotation))
                     return true;
+
                 var token = getTokenFromRequest(request);
-                jwtService.validarToken(token);
+                var email = jwtService.validarTokenAndGetEmailUsuario(token);
+                var usuario = usuarioService.obterUsuario(email);
+                usuarioAppContext.setUsuario(usuario);
 
             } catch (Exception e) {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

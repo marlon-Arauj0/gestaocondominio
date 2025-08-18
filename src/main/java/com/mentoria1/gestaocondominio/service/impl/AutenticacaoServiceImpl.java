@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
+import static com.mentoria1.gestaocondominio.utils.AppMenssages.INVALID_CREDENTIALS;
+
 @Service
 @RequiredArgsConstructor
 public class AutenticacaoServiceImpl implements AutenticacaoService {
@@ -23,16 +25,16 @@ public class AutenticacaoServiceImpl implements AutenticacaoService {
         try {
             var usuario = usuarioService.obterUsuario(request.email());
             validarSenha(usuario, request);
+
             return jwtService.gerarTokenJWT(usuario);
         } catch (UsuarioNotFoundException e){
-            throw new SemAutorizacaoException("Credenciais invalidas");
+            throw new SemAutorizacaoException(INVALID_CREDENTIALS);
         }
     }
 
     private void validarSenha(Usuario usuario, AutenticacaoRequest request){
         var isSenhaInvalida = !BCrypt.checkpw(request.senha(), usuario.getSenha());
          if (isSenhaInvalida)
-             throw new SemAutorizacaoException("Credenciais invalidas");
+             throw new SemAutorizacaoException(INVALID_CREDENTIALS);
     }
-
 }

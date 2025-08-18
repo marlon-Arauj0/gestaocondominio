@@ -3,7 +3,7 @@ package com.mentoria1.gestaocondominio.converter;
 import com.mentoria1.gestaocondominio.dataTransferObjectDTO.DespesaRequest;
 import com.mentoria1.gestaocondominio.domain.Despesa;
 import com.mentoria1.gestaocondominio.domain.enums.StatusDespesa;
-import com.mentoria1.gestaocondominio.service.UsuarioService;
+import com.mentoria1.gestaocondominio.oauth.UsuarioAppContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
@@ -18,14 +18,13 @@ import static com.mentoria1.gestaocondominio.utils.DataUtil.stringToLocalDate;
 @RequiredArgsConstructor
 public class DespesaConverter {
 
-    private final UsuarioService usuarioService;
+    private final UsuarioAppContext usuarioAppContext;
 
     public Despesa convert(DespesaRequest request){
-        var usuario = usuarioService.obterUsuario(request.idUsuario());
         Despesa despesa = new Despesa();
         BeanUtils.copyProperties(request, despesa);
 
-        despesa.setUsuario(usuario);
+        despesa.setUsuario(usuarioAppContext.getUsuario());
         despesa.setDataVencimento(stringToLocalDate(request.dataVencimento()));
         despesa.setDataPagamento(stringToLocalDate(request.dataPagamento()));
         despesa.setDataCriacao(LocalDateTime.now());
