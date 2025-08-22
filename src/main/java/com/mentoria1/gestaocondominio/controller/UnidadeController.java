@@ -1,6 +1,6 @@
 package com.mentoria1.gestaocondominio.controller;
 
-import com.mentoria1.gestaocondominio.dataTransferObjectDTO.UnidadeRequest;
+import com.mentoria1.gestaocondominio.dataTransferObjectDTO.Request.UnidadeRequest;
 import com.mentoria1.gestaocondominio.service.UnidadeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

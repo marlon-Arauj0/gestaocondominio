@@ -1,7 +1,7 @@
 package com.mentoria1.gestaocondominio.service.impl;
 
 import com.mentoria1.gestaocondominio.converter.UsuarioConverter;
-import com.mentoria1.gestaocondominio.dataTransferObjectDTO.UsuarioRequest;
+import com.mentoria1.gestaocondominio.dataTransferObjectDTO.Request.UsuarioRequest;
 import com.mentoria1.gestaocondominio.domain.Usuario;
 import com.mentoria1.gestaocondominio.exception.AssociacaoUsuarioUnidadeException;
 import com.mentoria1.gestaocondominio.exception.CriacaoException;

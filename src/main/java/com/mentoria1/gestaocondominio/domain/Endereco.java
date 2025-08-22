@@ -24,10 +24,9 @@ public class Endereco extends Domain {
     private String logradouro;
 
     @Column(nullable = false)
-    private String cep;
+    private String numero;
 
-    @Column(nullable = false)
-    private String uf;
+    private String complemento;
 
     @Column(nullable = false)
     private String bairro;
@@ -35,7 +34,9 @@ public class Endereco extends Domain {
     @Column(nullable = false)
     private String cidade;
 
-    private String numero;
+    @Column(nullable = false)
+    private String uf;
 
-    private String complemento;
+    @Column(nullable = false)
+    private String cep;
 }

@@ -1,6 +1,6 @@
 package com.mentoria1.gestaocondominio.service.impl;
 
-import com.mentoria1.gestaocondominio.dataTransferObjectDTO.UnidadeRequest;
+import com.mentoria1.gestaocondominio.dataTransferObjectDTO.Request.UnidadeRequest;
 import com.mentoria1.gestaocondominio.domain.Unidade;
 import com.mentoria1.gestaocondominio.exception.UsuarioNotFoundException;
 import com.mentoria1.gestaocondominio.repository.UnidadeRepository;

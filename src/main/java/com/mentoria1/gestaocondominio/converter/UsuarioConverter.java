@@ -1,6 +1,6 @@
 package com.mentoria1.gestaocondominio.converter;
 
-import com.mentoria1.gestaocondominio.dataTransferObjectDTO.UsuarioRequest;
+import com.mentoria1.gestaocondominio.dataTransferObjectDTO.Request.UsuarioRequest;
 import com.mentoria1.gestaocondominio.domain.Usuario;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.BeanUtils;

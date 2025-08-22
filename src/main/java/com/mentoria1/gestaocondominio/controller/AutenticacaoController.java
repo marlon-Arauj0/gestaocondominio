@@ -1,6 +1,6 @@
 package com.mentoria1.gestaocondominio.controller;
 
-import com.mentoria1.gestaocondominio.dataTransferObjectDTO.AutenticacaoRequest;
+import com.mentoria1.gestaocondominio.dataTransferObjectDTO.Request.AutenticacaoRequest;
 import com.mentoria1.gestaocondominio.service.AutenticacaoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

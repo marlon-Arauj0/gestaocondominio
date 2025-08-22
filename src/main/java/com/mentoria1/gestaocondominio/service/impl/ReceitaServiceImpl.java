@@ -1,7 +1,7 @@
 package com.mentoria1.gestaocondominio.service.impl;
 
 import com.mentoria1.gestaocondominio.converter.ReceitaConverter;
-import com.mentoria1.gestaocondominio.dataTransferObjectDTO.ReceitaRequest;
+import com.mentoria1.gestaocondominio.dataTransferObjectDTO.Request.ReceitaRequest;
 import com.mentoria1.gestaocondominio.domain.Receita;
 import com.mentoria1.gestaocondominio.domain.Unidade;
 import com.mentoria1.gestaocondominio.exception.ReceitaNotFoundException;

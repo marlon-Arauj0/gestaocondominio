@@ -1,6 +1,6 @@
 package com.mentoria1.gestaocondominio.controller;
 
-import com.mentoria1.gestaocondominio.dataTransferObjectDTO.ReceitaRequest;
+import com.mentoria1.gestaocondominio.dataTransferObjectDTO.Request.ReceitaRequest;
 import com.mentoria1.gestaocondominio.domain.Receita;
 import com.mentoria1.gestaocondominio.oauth.PreAutorizado;
 import com.mentoria1.gestaocondominio.service.ReceitaService;

@@ -1,6 +1,6 @@
 package com.mentoria1.gestaocondominio.service;
 
-import com.mentoria1.gestaocondominio.dataTransferObjectDTO.UsuarioRequest;
+import com.mentoria1.gestaocondominio.dataTransferObjectDTO.Request.UsuarioRequest;
 import com.mentoria1.gestaocondominio.domain.Usuario;
 
 

@@ -1,6 +1,6 @@
 package com.mentoria1.gestaocondominio.converter;
 
-import com.mentoria1.gestaocondominio.dataTransferObjectDTO.ReceitaRequest;
+import com.mentoria1.gestaocondominio.dataTransferObjectDTO.Request.ReceitaRequest;
 import com.mentoria1.gestaocondominio.domain.Receita;
 import com.mentoria1.gestaocondominio.oauth.UsuarioAppContext;
 import lombok.RequiredArgsConstructor;

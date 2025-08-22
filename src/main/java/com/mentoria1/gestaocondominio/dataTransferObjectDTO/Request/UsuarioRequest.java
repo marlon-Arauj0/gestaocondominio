@@ -1,4 +1,4 @@
-package com.mentoria1.gestaocondominio.dataTransferObjectDTO;
+package com.mentoria1.gestaocondominio.dataTransferObjectDTO.Request;
 
 import jakarta.validation.constraints.NotBlank;
 

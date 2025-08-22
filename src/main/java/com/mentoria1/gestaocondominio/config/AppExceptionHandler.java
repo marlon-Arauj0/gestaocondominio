@@ -1,6 +1,6 @@
 package com.mentoria1.gestaocondominio.config;
 
-import com.mentoria1.gestaocondominio.dataTransferObjectDTO.ErrorResponse;
+import com.mentoria1.gestaocondominio.dataTransferObjectDTO.Response.ErrorResponse;
 import com.mentoria1.gestaocondominio.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

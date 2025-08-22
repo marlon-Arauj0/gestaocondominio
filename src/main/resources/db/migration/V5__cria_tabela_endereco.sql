@@ -6,7 +6,7 @@ CREATE TABLE enderecos (
     cep         VARCHAR(15)     NOT NULL                            ,
     uf          VARCHAR(2)      NOT NULL                            ,
     bairro      VARCHAR(255)    NOT NULL                            ,
-    numero      VARCHAR(30)     NULL                                ,
+    numero      VARCHAR(30)     NOT NULL                            ,
     complemento VARCHAR(255)    NULL                                ,
     cidade      VARCHAR(255)    NOT NULL                            ,
     data_cricao TIMESTAMP       NOT NULL DEFAULT NOW()

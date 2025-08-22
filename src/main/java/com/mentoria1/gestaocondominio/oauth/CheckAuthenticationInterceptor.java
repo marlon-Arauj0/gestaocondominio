@@ -12,6 +12,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.util.Objects;
 
+import static com.mentoria1.gestaocondominio.utils.AppMenssages.WITHOUT_AUTHORIZATION;
+
 @Component
 @RequiredArgsConstructor
 public class CheckAuthenticationInterceptor implements HandlerInterceptor {
@@ -38,7 +40,7 @@ public class CheckAuthenticationInterceptor implements HandlerInterceptor {
 
             } catch (Exception e) {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                response.getWriter().write("Não tem autorização para esse serviço");
+                response.getWriter().write(WITHOUT_AUTHORIZATION);
                 return false;
             }
         }
@@ -49,5 +51,4 @@ public class CheckAuthenticationInterceptor implements HandlerInterceptor {
         var token = request.getHeader("Authorization");
         return  token.split("Bearer")[1];
     }
-
 }

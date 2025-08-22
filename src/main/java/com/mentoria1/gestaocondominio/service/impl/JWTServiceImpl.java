@@ -1,7 +1,6 @@
 package com.mentoria1.gestaocondominio.service.impl;
 
 import com.mentoria1.gestaocondominio.domain.Usuario;
-import com.mentoria1.gestaocondominio.oauth.enums.UsuarioClaims;
 import com.mentoria1.gestaocondominio.service.JWTService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -17,6 +16,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.mentoria1.gestaocondominio.oauth.enums.UsuarioClaims.admin;
+import static com.mentoria1.gestaocondominio.oauth.enums.UsuarioClaims.email;
 import static com.mentoria1.gestaocondominio.utils.AppMenssages.EXPIRED_TOKEN;
 
 @Service
@@ -49,7 +50,7 @@ public class JWTServiceImpl implements JWTService {
                 .parseSignedClaims(token);
 
         verificarExpiracaoToken(payloadClaims);
-        return payloadClaims.getPayload().get(UsuarioClaims.email.name(), String.class);
+        return payloadClaims.getPayload().get(email.name(), String.class);
     }
 
     private void verificarExpiracaoToken(Jws<Claims> claimsJws){
@@ -60,8 +61,8 @@ public class JWTServiceImpl implements JWTService {
 
     private Map<String, Object> construirPayload(Usuario usuario){
         Map<String, Object> mapa =new HashMap<>();
-        mapa.put(UsuarioClaims.email.name(), usuario.getEmail());
-        mapa.put(UsuarioClaims.admin.name(), usuario.getAdmin());
+        mapa.put(email.name(), usuario.getEmail());
+        mapa.put(admin.name(), usuario.getAdmin());
         return mapa;
     }
 

@@ -1,4 +1,4 @@
-package com.mentoria1.gestaocondominio.dataTransferObjectDTO;
+package com.mentoria1.gestaocondominio.dataTransferObjectDTO.Response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;

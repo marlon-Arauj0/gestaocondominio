@@ -1,6 +1,6 @@
 package com.mentoria1.gestaocondominio.converter;
 
-import com.mentoria1.gestaocondominio.dataTransferObjectDTO.DespesaRequest;
+import com.mentoria1.gestaocondominio.dataTransferObjectDTO.Request.DespesaRequest;
 import com.mentoria1.gestaocondominio.domain.Despesa;
 import com.mentoria1.gestaocondominio.domain.enums.StatusDespesa;
 import com.mentoria1.gestaocondominio.oauth.UsuarioAppContext;
